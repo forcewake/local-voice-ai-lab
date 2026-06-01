@@ -18,6 +18,27 @@ function resize() {
   context.setTransform(ratio, 0, 0, ratio, 0, 0);
 }
 
+function drawBackground() {
+  const base = context.createLinearGradient(0, 0, 0, height);
+  base.addColorStop(0, "#080d0f");
+  base.addColorStop(0.46, "#0b1113");
+  base.addColorStop(1, "#101413");
+  context.fillStyle = base;
+  context.fillRect(0, 0, width, height);
+
+  const tealGlow = context.createRadialGradient(width * 0.7, height * 0.1, 0, width * 0.7, height * 0.1, Math.min(width * 0.42, 520));
+  tealGlow.addColorStop(0, "rgba(78, 230, 195, 0.14)");
+  tealGlow.addColorStop(1, "rgba(78, 230, 195, 0)");
+  context.fillStyle = tealGlow;
+  context.fillRect(0, 0, width, height);
+
+  const amberGlow = context.createRadialGradient(width * 0.18, height * 0.72, 0, width * 0.18, height * 0.72, Math.min(width * 0.34, 460));
+  amberGlow.addColorStop(0, "rgba(245, 189, 78, 0.1)");
+  amberGlow.addColorStop(1, "rgba(245, 189, 78, 0)");
+  context.fillStyle = amberGlow;
+  context.fillRect(0, 0, width, height);
+}
+
 function drawGrid() {
   context.strokeStyle = "rgba(190, 231, 220, 0.06)";
   context.lineWidth = 1;
@@ -89,6 +110,7 @@ function drawWaveform() {
 
 function draw() {
   context.clearRect(0, 0, width, height);
+  drawBackground();
   drawGrid();
   drawSpectrogram();
   drawWaveform();

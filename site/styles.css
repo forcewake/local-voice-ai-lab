@@ -25,7 +25,8 @@ html {
 
 body {
   margin: 0;
-  background:
+  background-color: var(--bg);
+  background-image:
     radial-gradient(circle at 70% 10%, rgba(78, 230, 195, 0.14), transparent 28rem),
     radial-gradient(circle at 18% 72%, rgba(245, 189, 78, 0.1), transparent 24rem),
     linear-gradient(180deg, #080d0f 0%, #0b1113 46%, #101413 100%);
@@ -41,7 +42,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   content: "";
-  background:
+  background-color: var(--bg);
+  background-image:
     radial-gradient(circle at 70% 10%, rgba(78, 230, 195, 0.14), transparent 28rem),
     radial-gradient(circle at 18% 72%, rgba(245, 189, 78, 0.1), transparent 24rem),
     linear-gradient(180deg, #080d0f 0%, #0b1113 46%, #101413 100%);
@@ -131,12 +133,12 @@ footer {
 }
 
 .hero {
-  min-height: 88vh;
+  min-height: clamp(650px, 72vh, 840px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) 380px;
   align-items: center;
   gap: 52px;
-  padding: 92px 0 64px;
+  padding: 76px 0 58px;
 }
 
 .hero h1 {
