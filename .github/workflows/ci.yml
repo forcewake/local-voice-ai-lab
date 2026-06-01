@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke:
+    name: CLI smoke checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile scripts
+        run: python -m py_compile scripts/voice_lab.py scripts/voxtral_voice_clone_api.py
+
+      - name: Check CLI help
+        run: |
+          python scripts/voice_lab.py --help
+          python scripts/voice_lab.py models
+          python scripts/voice_lab.py models --format json
+
+      - name: Run unit tests
+        run: python -m unittest

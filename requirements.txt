@@ -1,0 +1,4 @@
+mlx-audio
+mistral-common[audio]
+huggingface_hub[hf_xet]
+requests

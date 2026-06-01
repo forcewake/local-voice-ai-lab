@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "local-voice-ai-lab"
+version = "0.1.0"
+description = "Repeatable local Voice AI benchmark lab for Apple Silicon, MLX-Audio, Voxtral, Qwen3, Higgs, and Parakeet."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+  { name = "Pavel Nasovich" }
+]
+keywords = ["voice-ai", "speech-ai", "mlx", "apple-silicon", "tts", "asr", "parakeet", "voxtral"]
+dependencies = []
+
+[project.optional-dependencies]
+local = [
+  "mlx-audio",
+  "mistral-common[audio]",
+  "huggingface_hub[hf_xet]",
+]
+api = [
+  "requests",
+]
+all = [
+  "mlx-audio",
+  "mistral-common[audio]",
+  "huggingface_hub[hf_xet]",
+  "requests",
+]
+
+[project.scripts]
+voice-lab = "scripts.voice_lab:main"
+
+[tool.setuptools.packages.find]
+include = ["scripts*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

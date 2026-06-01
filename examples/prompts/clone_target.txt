@@ -1,0 +1,1 @@
+This is my local voice clone test. The goal is to measure speed, memory, and repeatability before making any quality claims.

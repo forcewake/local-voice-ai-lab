@@ -1,0 +1,1 @@
+Local voice AI is becoming practical on Apple Silicon. This benchmark captures the command, model, runtime, memory, and output file for every run.

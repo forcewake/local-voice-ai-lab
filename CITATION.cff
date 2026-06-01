@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: Local Voice AI Lab
+message: If you use this repository in a publication or benchmark write-up, please cite it.
+type: software
+authors:
+  - family-names: Nasovich
+    given-names: Pavel
+date-released: 2026-06-01
+version: 0.1.0
+abstract: Repeatable local Voice AI benchmark lab for Apple Silicon, MLX-Audio, Voxtral, Qwen3, Higgs, and Parakeet.
+keywords:
+  - voice-ai
+  - speech-ai
+  - mlx
+  - apple-silicon
+  - text-to-speech
+  - speech-to-text
+license: MIT

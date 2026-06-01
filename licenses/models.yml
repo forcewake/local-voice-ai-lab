@@ -1,0 +1,38 @@
+models:
+  voxtral_tts_mlx_4bit:
+    id: mlx-community/Voxtral-4B-TTS-2603-mlx-4bit
+    upstream: mistralai/Voxtral-4B-TTS-2603
+    task: tts
+    local: true
+    license_status: review_required
+    notes: "Community MLX conversion. Upstream Voxtral TTS open weights are documented as CC BY-NC 4.0."
+    source: https://huggingface.co/mistralai/Voxtral-4B-TTS-2603
+  qwen3_tts_06b:
+    id: mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16
+    task: tts_voice_clone
+    local: true
+    license_status: review_required
+    notes: "Local reference-audio clone path. Check upstream model card before commercial use."
+    source: https://huggingface.co/mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16
+  higgs_audio_q6:
+    id: mlx-community/higgs-audio-v2-3B-mlx-q6
+    task: tts_voice_clone
+    local: true
+    license_status: review_required
+    notes: "Larger local clone path. Check upstream model card and Boson AI license before commercial use."
+    source: https://huggingface.co/mlx-community/higgs-audio-v2-3B-mlx-q6
+  parakeet_small:
+    id: mlx-community/parakeet-tdt_ctc-110m
+    task: stt
+    local: true
+    license_status: review_required
+    notes: "Small local Parakeet smoke-test preset."
+    source: https://huggingface.co/mlx-community/parakeet-tdt_ctc-110m
+  parakeet_v3:
+    id: mlx-community/parakeet-tdt-0.6b-v3
+    upstream: nvidia/parakeet-tdt-0.6b-v3
+    task: stt
+    local: true
+    license_status: review_required
+    notes: "Heavier multilingual Parakeet transcription preset."
+    source: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
