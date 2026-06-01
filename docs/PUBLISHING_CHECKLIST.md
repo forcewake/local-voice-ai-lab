@@ -15,6 +15,7 @@ Use this before publishing the repo.
 - [ ] Verify README install steps from a clean checkout.
 - [ ] Confirm all source claims in docs have links.
 - [ ] Run `make publish-check`.
+- [ ] Confirm GitHub Pages deploys from `site/`.
 
 ## Recommended
 

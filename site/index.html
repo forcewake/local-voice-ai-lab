@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local Voice AI Lab</title>
+    <meta
+      name="description"
+      content="Benchmark Voxtral TTS, Qwen3 cloning, Higgs Audio, and Parakeet transcription on Apple Silicon."
+    >
+    <meta property="og:title" content="Local Voice AI Lab">
+    <meta
+      property="og:description"
+      content="A repeatable local speech-model benchmark lab for Apple Silicon."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://forcewake.github.io/local-voice-ai-lab/">
+    <meta name="theme-color" content="#080d0f">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <canvas id="signal-canvas" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Local Voice AI Lab home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img">
+            <path d="M4 18h4l2-8 4 16 4-20 4 12h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Local Voice AI Lab</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#workflows">Workflows</a>
+        <a href="#benchmarks">Benchmarks</a>
+        <a href="#matrix">Safety</a>
+        <a href="https://github.com/forcewake/local-voice-ai-lab/blob/main/blog/voxtral-fluidaudio-parakeet-deep-comparison.md">Article</a>
+        <a href="https://github.com/forcewake/local-voice-ai-lab">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Local Voice AI Lab</h1>
+          <p>
+            Benchmark Voxtral TTS, Qwen3 cloning, Higgs Audio, and Parakeet
+            transcription on Apple Silicon.
+          </p>
+          <div class="hero-actions" aria-label="Project actions">
+            <a class="button primary" href="https://github.com/forcewake/local-voice-ai-lab">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Open GitHub
+            </a>
+            <a class="button secondary" href="#workflows">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8 17 4 4 4-4M12 12v9M20.9 18A5 5 0 0 0 18 9h-1.3A8 8 0 1 0 3 16.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Run the smoke suite
+            </a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Benchmark signal preview">
+          <div class="panel-top">
+            <span>voice_lab.py suite --suite smoke</span>
+            <span>arm64</span>
+          </div>
+          <div class="signal-stack">
+            <div class="signal-row active">
+              <span>voxtral-tts</span>
+              <strong>3.47 RTFx</strong>
+            </div>
+            <div class="signal-row">
+              <span>qwen3-clone</span>
+              <strong>1.73 RTFx</strong>
+            </div>
+            <div class="signal-row">
+              <span>parakeet-small</span>
+              <strong>0.56 GB</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflows" class="section command-section" aria-labelledby="workflows-title">
+        <div class="section-heading">
+          <h2 id="workflows-title">One command per voice workflow</h2>
+          <p>Run the lab from a clean checkout, keep raw artifacts local, and publish only sanitized evidence.</p>
+        </div>
+        <div class="command-grid">
+          <button class="command-row" type="button" data-copy="make voxtral">
+            <span>Voxtral local TTS</span>
+            <code>make voxtral</code>
+          </button>
+          <button class="command-row" type="button" data-copy="make qwen3-clone">
+            <span>Qwen3 local clone</span>
+            <code>make qwen3-clone</code>
+          </button>
+          <button class="command-row" type="button" data-copy="make higgs-clone">
+            <span>Higgs Audio clone</span>
+            <code>make higgs-clone</code>
+          </button>
+          <button class="command-row" type="button" data-copy="make parakeet">
+            <span>Parakeet transcription</span>
+            <code>make parakeet</code>
+          </button>
+        </div>
+      </section>
+
+      <section id="benchmarks" class="section benchmark-section" aria-labelledby="benchmarks-title">
+        <div class="section-heading">
+          <h2 id="benchmarks-title">Benchmark evidence, not vibes</h2>
+          <p>Every row captures command, model id, wall time, memory, RTFx, model size, output files, and logs.</p>
+        </div>
+        <div class="table-wrap" role="region" aria-label="Sample benchmark table" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Model</th>
+                <th>Wall time</th>
+                <th>RTFx</th>
+                <th>Peak memory</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Voxtral TTS</td>
+                <td>Voxtral 4B 4-bit</td>
+                <td>4.27s</td>
+                <td><span class="bar" style="--bar: 88%">3.47</span></td>
+                <td>2.76 GB</td>
+              </tr>
+              <tr>
+                <td>Qwen3 clone</td>
+                <td>Qwen3 TTS 0.6B</td>
+                <td>3.97s</td>
+                <td><span class="bar" style="--bar: 44%">1.73</span></td>
+                <td>6.58 GB</td>
+              </tr>
+              <tr>
+                <td>Parakeet STT</td>
+                <td>TDT-CTC 110M</td>
+                <td>31.74s</td>
+                <td><span class="bar muted" style="--bar: 12%">0.15</span></td>
+                <td>0.56 GB</td>
+              </tr>
+              <tr>
+                <td>Higgs clone</td>
+                <td>Higgs Audio v2 q6</td>
+                <td>64.25s</td>
+                <td><span class="bar" style="--bar: 25%">0.99</span></td>
+                <td>6.51 GB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <a class="text-link" href="https://github.com/forcewake/local-voice-ai-lab/blob/main/reports/sample_voice_lab_report.md">
+          View sanitized sample report
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </section>
+
+      <section id="matrix" class="section matrix-section" aria-labelledby="matrix-title">
+        <div class="section-heading">
+          <h2 id="matrix-title">Choose the right speech layer</h2>
+          <p>Voxtral speaks, Parakeet listens, and clone-capable local models need explicit consent.</p>
+        </div>
+        <div class="matrix-grid">
+          <article>
+            <h3>Voxtral TTS</h3>
+            <p>Preset-voice local TTS through MLX-Audio. Open weights are CC BY-NC 4.0.</p>
+          </article>
+          <article>
+            <h3>Qwen3 clone</h3>
+            <p>Reference-audio local cloning path for your own voice or explicitly permitted voices.</p>
+          </article>
+          <article>
+            <h3>Higgs Audio</h3>
+            <p>Heavier clone-capable route with a license boundary that needs upstream review.</p>
+          </article>
+          <article>
+            <h3>Parakeet</h3>
+            <p>Local transcription baseline for smoke tests and larger ASR comparisons.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section safety-section" aria-labelledby="safety-title">
+        <div>
+          <h2 id="safety-title">Built for public proof without leaking private voice data</h2>
+          <p>
+            Generated audio, transcripts, raw logs, and local reports stay ignored.
+            The tracked samples are sanitized, and `make publish-check` scans the Git index before release.
+          </p>
+        </div>
+        <div class="safety-list">
+          <span>Consent-gated clone commands</span>
+          <span>Model license registry</span>
+          <span>GitHub Actions smoke checks</span>
+          <span>Source-backed technical article</span>
+        </div>
+      </section>
+
+      <section class="section article-section" aria-labelledby="article-title">
+        <div class="article-copy">
+          <h2 id="article-title">Deep technical comparison included</h2>
+          <p>
+            A long-form engineering article compares Voxtral, FluidAudio, Parakeet,
+            Qwen3, and Higgs across architecture, deployment, licenses, use cases,
+            and local Apple Silicon tradeoffs.
+          </p>
+        </div>
+        <a class="button primary" href="https://github.com/forcewake/local-voice-ai-lab/blob/main/blog/voxtral-fluidaudio-parakeet-deep-comparison.md">
+          Read the article
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <span>Local Voice AI Lab</span>
+      <a href="https://github.com/forcewake/local-voice-ai-lab">GitHub</a>
+      <a href="https://github.com/forcewake/local-voice-ai-lab/blob/main/docs/SAFETY_AND_LICENSES.md">Safety and licenses</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

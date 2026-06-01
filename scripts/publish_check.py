@@ -25,6 +25,11 @@ REQUIRED_FILES = {
     "docs/CLAIMS.md",
     "docs/SAFETY_AND_LICENSES.md",
     "licenses/models.yml",
+    "site/.nojekyll",
+    "site/index.html",
+    "site/styles.css",
+    "site/script.js",
+    ".github/workflows/pages.yml",
 }
 
 FORBIDDEN_TRACKED_PATHS = (

@@ -4,6 +4,7 @@
 ![Apple Silicon](https://img.shields.io/badge/Apple%20Silicon-MLX-black)
 ![Local First](https://img.shields.io/badge/local--first-audio%20AI-green)
 ![Benchmarks](https://img.shields.io/badge/reports-CSV%20%2B%20Markdown-orange)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-4ee6c3)](https://forcewake.github.io/local-voice-ai-lab/)
 
 A repeatable Apple Silicon voice AI lab for testing local TTS, local
 reference-audio voice cloning, and local transcription.
@@ -29,6 +30,8 @@ redistribution or commercial use.
 | Parakeet v3 | `mlx-community/parakeet-tdt-0.6b-v3` | CLI preset | Heavier multilingual transcription |
 
 ## Quickstart
+
+Project site: https://forcewake.github.io/local-voice-ai-lab/
 
 ```bash
 git clone https://github.com/forcewake/local-voice-ai-lab.git
