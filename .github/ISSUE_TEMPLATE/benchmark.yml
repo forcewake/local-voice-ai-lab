@@ -1,0 +1,49 @@
+name: Benchmark result
+description: Share a reproducible local benchmark result.
+title: "[benchmark] "
+labels: ["benchmark"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please include enough detail for someone else to reproduce the run.
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware
+      description: Mac model, chip, unified memory.
+      placeholder: MacBook Pro, M4 Pro, 48 GB
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      placeholder: mlx-community/Voxtral-4B-TTS-2603-mlx-4bit
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      render: bash
+      placeholder: make smoke
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics
+      description: Paste sanitized CSV row, Markdown table row, or report excerpt.
+      render: markdown
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: I removed private paths, private transcripts, and personal audio.
+          required: true
+        - label: Any voice cloning used only my own voice or a voice with explicit permission.
+          required: true

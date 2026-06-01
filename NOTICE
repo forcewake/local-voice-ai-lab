@@ -1,0 +1,9 @@
+Local Voice AI Lab Notice
+
+The MIT license in this repository applies only to the benchmark harness,
+scripts, documentation, and repo-maintained source code.
+
+It does not grant rights to third-party model weights, hosted APIs, generated
+audio outputs, reference voices, datasets, or upstream runtime dependencies.
+Every benchmark row records model identifiers so license review can trace which
+model produced which artifact.

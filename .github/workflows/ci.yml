@@ -18,14 +18,28 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install package
+        run: |
+          python -m pip install -U pip build
+          python -m pip install -e ".[api]"
+
       - name: Compile scripts
-        run: python -m py_compile scripts/voice_lab.py scripts/voxtral_voice_clone_api.py
+        run: python -m py_compile scripts/voice_lab.py scripts/voxtral_voice_clone_api.py scripts/publish_check.py
 
       - name: Check CLI help
         run: |
           python scripts/voice_lab.py --help
+          voice-lab --help
           python scripts/voice_lab.py models
+          voice-lab models
           python scripts/voice_lab.py models --format json
+          voice-lab models --format json
 
       - name: Run unit tests
         run: python -m unittest
+
+      - name: Run publish check
+        run: python scripts/publish_check.py
+
+      - name: Build wheel
+        run: python -m build --wheel

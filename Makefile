@@ -1,10 +1,10 @@
-.PHONY: setup voxtral qwen3-clone higgs-clone parakeet smoke all report clean-reports
+.PHONY: setup voxtral qwen3-clone higgs-clone parakeet smoke all report publish-check clean-reports
 
 PYTHON ?= .venv/bin/python
 
 setup:
 	uv venv --python 3.12 --seed
-	.venv/bin/python -m pip install -U -r requirements.txt
+	.venv/bin/python -m pip install -U -e ".[all]"
 
 voxtral:
 	$(PYTHON) scripts/voice_lab.py voxtral
@@ -27,5 +27,8 @@ all:
 report:
 	$(PYTHON) scripts/voice_lab.py report
 
+publish-check:
+	$(PYTHON) scripts/publish_check.py
+
 clean-reports:
-	rm -rf reports runs artifacts
+	rm -rf runs artifacts audio reports/voice_lab_results.csv reports/voice_lab_report.md reports/index.html

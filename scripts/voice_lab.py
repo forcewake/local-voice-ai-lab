@@ -25,7 +25,7 @@ from pathlib import Path
 from typing import Iterable
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path.cwd().resolve()
 REPORTS_DIR = ROOT / "reports"
 RUNS_DIR = ROOT / "runs"
 ARTIFACTS_DIR = ROOT / "artifacts"
@@ -69,7 +69,7 @@ MODEL_CATALOG = {
     "parakeet-v3": {
         "task": "STT",
         "model": PARAKEET_V3_MODEL,
-        "command": "python scripts/voice_lab.py parakeet --preset v3 --audio path/to/audio.wav",
+        "command": ".venv/bin/python scripts/voice_lab.py parakeet --preset v3 --audio path/to/audio.wav",
         "notes": "Heavier multilingual Parakeet v3 transcription preset.",
     },
 }
@@ -248,11 +248,13 @@ def parse_tts_metrics(output: str) -> dict[str, float | list[str]]:
 
 
 def parse_stt_metrics(output: str) -> dict[str, float | list[str]]:
-    saved = re.search(r"Saving file to:\s*\.?/?(.+)", output, flags=re.IGNORECASE)
+    saved = re.search(r"Saving file to:\s*(.+)", output, flags=re.IGNORECASE)
     output_files: list[str] = []
     if saved:
         path = saved.group(1).strip()
-        output_files.append(display_path((ROOT / path).resolve() if not Path(path).is_absolute() else path))
+        output_files.append(
+            display_path((ROOT / path).resolve() if not Path(path).is_absolute() else path)
+        )
     return {
         "output_files": output_files,
         "processing_time_sec": first_float(r"Processing time:\s*([0-9.]+)\s*seconds", output),
@@ -1123,7 +1125,6 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main() -> None:
-    ensure_dirs()
     parser = build_parser()
     args = parser.parse_args()
     args.func(args)

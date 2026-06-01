@@ -79,7 +79,7 @@ The table below deliberately mixes capabilities and deployment facts, because th
 | ASR | Yes, Voxtral Mini Transcribe V2 and Voxtral Realtime | Yes, including Parakeet TDT variants | Yes |
 | Diarization | Yes in Mistral STT API | Yes: Pyannote, Sortformer, LS-EEND pipelines | No, not by itself |
 | Timestamps | Yes in Mistral STT | Yes depending on pipeline | Yes: word and segment timestamps in Parakeet TDT |
-| Local license caveat | Voxtral 4B TTS weights are CC BY-NC 4.0 | SDK is Apache-2.0; model licenses vary; FluidAudioTTS adds GPL-3.0 ESpeakNG dependency | Parakeet v3 is CC-BY-4.0; v2 has NVIDIA terms |
+| Local license caveat | Voxtral 4B TTS weights are CC BY-NC 4.0 | SDK is Apache-2.0; model licenses vary; FluidAudioTTS adds GPL-3.0 ESpeakNG dependency | NVIDIA Parakeet v2/v3 model cards list CC-BY-4.0; check each conversion card |
 
 Sources: Mistral Voxtral TTS docs and model card, Mistral STT/TTS docs, FluidAudio docs and benchmarks, NVIDIA/Hugging Face Parakeet cards, linked throughout this article.
 
@@ -469,6 +469,11 @@ mlx_audio.tts.generate \
   --verbose
 ```
 
+Higgs license caveat: the MLX conversion page lists Apache-2.0, but the
+upstream Boson model card links a custom Boson Higgs Audio 2 Community License
+with Meta Llama 3 terms. Treat Higgs as license-review-required before public
+distribution or commercial product work.
+
 Best practice for any clone-capable model:
 
 - Use only your own voice or explicit consent.
@@ -485,10 +490,14 @@ Parakeet is the cleanest ASR story.
 
 [NVIDIA's Parakeet v3 model card](https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3) reports 600M parameters, FastConformer-TDT architecture, 25 European languages, automatic language detection, punctuation/capitalization, word and segment timestamps, CC BY 4.0 licensing, and an average WER of 6.34% on the Hugging Face Open ASR Leaderboard table shown in the card.
 
-[FluidAudio's benchmarks](https://github.com/FluidInference/FluidAudio/blob/main/benchmarks.md) are specifically relevant to Apple Silicon:
+[FluidAudio's root benchmark table](https://github.com/FluidInference/FluidAudio/blob/main/benchmarks.md) is specifically relevant to Apple Silicon:
 
-- Parakeet TDT-CTC-110M CoreML: 3.01% WER on LibriSpeech test-clean, 96.5x realtime on Apple M2.
-- Parakeet TDT 0.6B v3 CoreML: 2.64% WER on LibriSpeech test-clean for the 8-bit palettized encoder, 47.1x realtime, 153 MB peak RAM on Apple M2 in the published benchmark table.
+- Parakeet TDT-CTC-110M CoreML: 3.01% WER on LibriSpeech test-clean, 96.5x realtime on Apple M2 in that root table.
+- Parakeet TDT 0.6B v3 CoreML: 2.64% WER on LibriSpeech test-clean for the 8-bit palettized encoder, 47.1x realtime, 153 MB peak RAM on Apple M2 in that root table.
+
+FluidAudio also publishes newer benchmark documentation for other hardware and
+tasks, including M4 Pro / FLEURS-oriented tables. Treat each number as tied to
+its exact benchmark page, model variant, device, and dataset.
 
 Mistral's STT docs describe Voxtral Mini Transcribe V2 as high accuracy, with diarization, context biasing, timestamps, 13-language support, noise robustness, and long audio up to 3 hours. However, the public Mistral docs page does not present the same directly comparable LibriSpeech table in the snippet used here. Treat it as a product capability statement, not a benchmark equivalent to Parakeet's model card or FluidAudio's benchmark page.
 
@@ -1087,7 +1096,7 @@ Choose the layer before you choose the model.
 Primary sources used:
 
 - Mistral Voxtral TTS model card: https://docs.mistral.ai/models/model-cards/voxtral-tts-26-03
-- Mistral Speech Generation docs: https://docs.mistral.ai/studio-api/audio/text_to_speech/speech
+- Mistral Speech Generation API reference: https://docs.mistral.ai/api/endpoint/audio/speech
 - Mistral Voices docs: https://docs.mistral.ai/studio-api/audio/text_to_speech/voices
 - Mistral Speech-to-Text docs: https://docs.mistral.ai/studio-api/audio/speech_to_text
 - Official Voxtral TTS weights: https://huggingface.co/mistralai/Voxtral-4B-TTS-2603

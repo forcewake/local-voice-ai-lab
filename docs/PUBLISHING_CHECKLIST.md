@@ -14,6 +14,7 @@ Use this before publishing the repo.
 - [ ] Commit only sanitized sample reports such as `reports/sample_voice_lab_report.md` and `reports/sample_voice_lab_results.csv`.
 - [ ] Verify README install steps from a clean checkout.
 - [ ] Confirm all source claims in docs have links.
+- [ ] Run `make publish-check`.
 
 ## Recommended
 
@@ -30,5 +31,6 @@ make setup
 .venv/bin/python scripts/voice_lab.py doctor
 make smoke
 make report
-python -m py_compile scripts/voice_lab.py scripts/voxtral_voice_clone_api.py
+make publish-check
+.venv/bin/python -m py_compile scripts/voice_lab.py scripts/voxtral_voice_clone_api.py scripts/publish_check.py
 ```

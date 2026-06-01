@@ -9,30 +9,35 @@ models:
     source: https://huggingface.co/mistralai/Voxtral-4B-TTS-2603
   qwen3_tts_06b:
     id: mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16
+    upstream: Qwen/Qwen3-TTS-12Hz-0.6B-Base
     task: tts_voice_clone
     local: true
-    license_status: review_required
-    notes: "Local reference-audio clone path. Check upstream model card before commercial use."
-    source: https://huggingface.co/mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16
+    license_status: apache-2.0_upstream_model_card
+    notes: "Local reference-audio clone path. Review both upstream and MLX conversion cards before redistribution."
+    source: https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-Base
   higgs_audio_q6:
     id: mlx-community/higgs-audio-v2-3B-mlx-q6
+    upstream: bosonai/higgs-audio-v2-generation-3B-base
     task: tts_voice_clone
     local: true
-    license_status: review_required
-    notes: "Larger local clone path. Check upstream model card and Boson AI license before commercial use."
-    source: https://huggingface.co/mlx-community/higgs-audio-v2-3B-mlx-q6
+    license_status: review_required_boson_community_license
+    notes: "The MLX conversion page lists Apache-2.0, but the upstream Boson model card links a custom Boson Higgs Audio 2 Community License with Meta Llama 3 terms. Resolve before publication or commercial use."
+    source: https://huggingface.co/bosonai/higgs-audio-v2-generation-3B-base
+    conversion_source: https://huggingface.co/mlx-community/higgs-audio-v2-3B-mlx-q6
   parakeet_small:
     id: mlx-community/parakeet-tdt_ctc-110m
+    upstream: nvidia/parakeet-tdt_ctc-110m
     task: stt
     local: true
     license_status: review_required
-    notes: "Small local Parakeet smoke-test preset."
-    source: https://huggingface.co/mlx-community/parakeet-tdt_ctc-110m
+    notes: "Small local Parakeet smoke-test preset. Check exact upstream and conversion model cards."
+    source: https://huggingface.co/nvidia/parakeet-tdt_ctc-110m
+    conversion_source: https://huggingface.co/mlx-community/parakeet-tdt_ctc-110m
   parakeet_v3:
     id: mlx-community/parakeet-tdt-0.6b-v3
     upstream: nvidia/parakeet-tdt-0.6b-v3
     task: stt
     local: true
-    license_status: review_required
+    license_status: cc-by-4.0_upstream_model_card
     notes: "Heavier multilingual Parakeet transcription preset."
     source: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3

@@ -36,13 +36,16 @@ Completed baseline capabilities:
 - Hosted Mistral Voxtral one-off reference-audio helper.
 - Consent gates on custom reference-audio clone commands.
 - Basic model license registry and consent example.
+- Pre-publication check for required files, generated artifacts, local paths,
+  and obvious secrets.
 
 Known gaps:
 
 - No repeated-run statistics or variance reporting.
 - No quality scoring rubric captured in the report.
 - No machine-readable per-run manifest.
-- No automated publish check for sensitive transcripts, API keys, or voice data.
+- No semantic transcript classifier for private content beyond basic publish
+  checks.
 
 ## Milestone Plan
 

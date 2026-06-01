@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose a model, metric, report, or workflow improvement.
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: What decision or workflow would this unlock?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the desired CLI, report, model, or documentation behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Link upstream model cards, docs, papers, or benchmark references.

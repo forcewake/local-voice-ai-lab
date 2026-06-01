@@ -125,7 +125,7 @@ def main() -> None:
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        audio_bytes = base64.b64decode(audio_b64)
+        audio_bytes = base64.b64decode(audio_b64, validate=True)
     except ValueError as exc:
         raise SystemExit(f"Mistral API returned invalid base64 audio: {exc}") from exc
     output_path.write_bytes(audio_bytes)

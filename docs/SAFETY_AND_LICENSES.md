@@ -25,7 +25,12 @@ using a model commercially.
 Known caveats:
 
 - Voxtral TTS open weights are listed as CC BY-NC 4.0 by the official model card.
-- Parakeet model licenses vary by version; check NVIDIA/Hugging Face cards.
+- Qwen3-TTS 0.6B Base is listed as Apache-2.0 by the upstream Qwen model card.
+- Higgs Audio needs explicit review: the MLX conversion page lists Apache-2.0,
+  but the upstream Boson model card links a custom Boson Higgs Audio 2
+  Community License with Meta Llama 3 terms.
+- NVIDIA Parakeet v2 and v3 model cards are listed as CC-BY-4.0; community
+  conversions and other Parakeet-family checkpoints still need exact-card review.
 - FluidAudio's SDK and individual model pipelines have separate licensing surfaces.
 - Generated reports include model ids so license review can trace each run.
 
@@ -40,4 +45,3 @@ Known caveats:
 
 The script `scripts/voxtral_voice_clone_api.py` requires `MISTRAL_API_KEY`.
 Keep that value in your shell environment or secret manager, not in source code.
-

@@ -12,6 +12,12 @@ It wraps MLX-Audio model runners, captures raw command logs, parses runtime and
 memory metrics, computes model sizes, and writes reproducible CSV plus Markdown
 reports.
 
+The repository code is MIT licensed. Model weights, generated outputs, hosted
+API use, and third-party voice data are governed by their own upstream licenses
+and terms. Voxtral open weights are non-commercial CC BY-NC 4.0; always check
+[licenses/models.yml](licenses/models.yml) and the upstream model card before
+redistribution or commercial use.
+
 ## What This Repo Runs
 
 | workflow | model | command | purpose |
@@ -25,8 +31,8 @@ reports.
 ## Quickstart
 
 ```bash
-git clone <your-future-github-url>
-cd VoxtralTTS
+git clone https://github.com/forcewake/local-voice-ai-lab.git
+cd local-voice-ai-lab
 
 make setup
 .venv/bin/python scripts/voice_lab.py doctor
@@ -49,6 +55,7 @@ make parakeet     # Parakeet local transcription, 110M preset
 make smoke        # Voxtral + Qwen3 + Parakeet small
 make all          # Smoke suite plus Higgs clone
 make report       # Regenerate Markdown report from CSV
+make publish-check # Check for publish blockers before pushing to GitHub
 ```
 
 Use your own reference voice:
@@ -77,7 +84,7 @@ Run Parakeet v3:
 
 ## Example Results
 
-From the latest local smoke and Higgs runs on this machine:
+Sanitized sample rows from local smoke and Higgs runs:
 
 | task | status | wall time | RTFx | peak memory | output |
 | --- | --- | ---: | ---: | ---: | --- |
@@ -116,12 +123,27 @@ See:
 - raw command logs
 - transcript text for STT runs
 
-## Verified Local Environment
+## Before Publishing Results
+
+Generated benchmark reports can contain private transcripts or local machine
+paths. The tracked `reports/sample_*` files are sanitized examples; local
+`reports/voice_lab_*` files are ignored.
+
+```bash
+make report
+make publish-check
+```
+
+The publish check verifies required repo files, blocks generated audio/report
+artifacts from Git, and scans tracked text files for obvious secrets or local
+absolute paths.
+
+## Sample Local Environment
 
 - Architecture: `arm64`
-- macOS: `26.4.1`
-- `uv`: `/opt/homebrew/bin/uv`
-- `ffmpeg`: `/opt/homebrew/bin/ffmpeg`
+- macOS on Apple Silicon
+- `uv` available on PATH
+- `ffmpeg` and `ffprobe` available on PATH
 - Python in lab: `3.12.11`
 
 Use a project-local Python 3.12 environment. The global Python on this machine
@@ -147,7 +169,8 @@ Key properties:
 Primary sources:
 
 - Mistral docs: https://docs.mistral.ai/models/model-cards/voxtral-tts-26-03
-- Mistral speech API docs: https://docs.mistral.ai/studio-api/audio/text_to_speech/speech
+- Mistral speech API docs: https://docs.mistral.ai/api/endpoint/audio/speech
+- Mistral voice docs: https://docs.mistral.ai/studio-api/audio/text_to_speech/voices
 - Mistral announcement: https://mistral.ai/news/voxtral-tts/
 - Hugging Face official weights: https://huggingface.co/mistralai/Voxtral-4B-TTS-2603
 - MLX 4-bit build: https://huggingface.co/mlx-community/Voxtral-4B-TTS-2603-mlx-4bit
@@ -278,6 +301,11 @@ This is the smallest local voice-cloning setup tested in this workspace. It
 downloads about 2.34 GiB of weights and peaked at about 6.72 GB memory in a
 short smoke test on Apple Silicon.
 
+The upstream Qwen3-TTS model card describes 10-language TTS, rapid voice
+cloning from user-provided audio, and Apache-2.0 licensing. This repo uses the
+MLX conversion `mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16`, so local behavior
+should be validated through the benchmark runner.
+
 You must provide both:
 
 - `--ref_audio`: your voice sample.
@@ -319,6 +347,11 @@ mlx_audio.tts.generate \
 
 Higgs Audio v2 is another Apple Silicon local option with reference-audio voice
 cloning. It is larger than Qwen3 0.6B but is designed for local voice cloning.
+
+License caveat: the MLX conversion page lists Apache-2.0, while the upstream
+Boson model card links a custom Boson Higgs Audio 2 Community License with Meta
+Llama 3 terms. Treat Higgs as license-review-required for publication or
+commercial use until that boundary is resolved.
 
 ```bash
 mlx_audio.tts.generate \
